@@ -1,0 +1,20 @@
+package relacionEjercicios;
+
+public class Ejercicio1Asignatura {
+	String nombre;
+	int nota;
+	public Ejercicio1Asignatura(String nombre, int nota) {
+		super();
+		this.nombre = nombre;
+		this.nota = nota;
+	}
+	public int getNota() {
+		return nota;
+	}
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+	
+	
+	
+}

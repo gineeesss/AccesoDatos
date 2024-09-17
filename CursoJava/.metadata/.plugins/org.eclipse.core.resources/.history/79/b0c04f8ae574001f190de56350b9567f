@@ -1,0 +1,7 @@
+package relacionEjercicios;
+
+public class Ejercicio1Asignatura {
+	String[] nombres = {"Matemáticas","Lengua","Inglés","Informática"};
+	int[] notas = {6,7,4,6};
+
+}
