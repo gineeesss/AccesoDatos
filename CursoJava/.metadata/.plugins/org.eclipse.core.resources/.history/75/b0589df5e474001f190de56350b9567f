@@ -1,6 +1,0 @@
-package relacionEjercicios;
-
-public class Ejercicio1Asignatura {
-	String[] nombres = {"Matemáticas","Lengua","Inglés","Informática"};
-	
-}
