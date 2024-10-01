@@ -5,4 +5,6 @@
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.nio.channels.AsynchronousServerSocketChannel"/>
+    <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
 </qualifiedTypeNameHistroy>

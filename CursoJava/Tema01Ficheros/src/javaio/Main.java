@@ -43,6 +43,12 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(fichero.delete()) {
+			System.out.println("El fichero ha sido borrado");
+		}else {
+			System.out.println("El fichero no se ha podido borrar");
+		}
+		System.out.println("Programa finalizado");
 	}
 	
 }
