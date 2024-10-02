@@ -1,5 +1,4 @@
 package javaio.ficherosBinario;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,9 +11,9 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		//creamos un fichero donde guardar el objeto creado
-		File file = new File("ficheros/objeto");
+		File file = new File("fichero/objeto");
 		guardarObjeto(file);
-		//recuperarObjeto(file);
+		recuperarObjeto(file);
 	}
 	
 	private static void recuperarObjeto(File file) {
@@ -38,7 +37,7 @@ public class Main {
 		//LEEREMOS DEL FICHERO LOS DATOS DE LA PERSONA
 		try {
 			Persona persona = (Persona) objectInputStream.readObject();
-			System.err.println(persona);
+			System.out.println(persona);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error al recuperar el objeto del fichero");
 			System.out.println(e.getMessage());
@@ -100,8 +99,8 @@ public class Main {
 		try {
 			objetOutputStream = new ObjectOutputStream(fileOutputStream);
 		} catch (IOException e) {
-			e.printStackTrace();
 			System.out.println("No se ha podido crear el fichero: "+ file.getName());
+			System.out.println(e.getMessage());
 			System.exit(-3);
 		}
 		
@@ -121,6 +120,7 @@ public class Main {
 		} catch (IOException e) {
 			System.err.println("No se ha podido cerrar lo que sea");
 			System.err.println(e.getMessage());
+			System.out.println(-5);
 		}
 		
 	}
