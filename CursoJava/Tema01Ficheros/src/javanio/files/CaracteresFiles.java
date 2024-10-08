@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 public class CaracteresFiles {
 
@@ -12,6 +13,20 @@ public class CaracteresFiles {
 		Path path = Path.of("fichero/nio/ficheros_caracteres.txt");
 		
 		escribir(path);
+		leer(path);
+	}
+
+	private static void leer(Path path) {
+		try {
+			List <String> textos = Files.readAllLines(path);
+			for(String texto:textos) {
+				System.out.println(texto);
+			}
+		} catch (IOException e) {
+			System.err.println("Error: no se que pasa tronco");
+			System.err.println(e.getMessage());
+			System.exit(-2);		
+		}
 	}
 
 	private static void escribir(Path path) {
