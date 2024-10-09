@@ -7,8 +7,20 @@ import java.nio.file.Path;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.Result;
+import javax.xml.transform.stream.StreamResult;
 
+
+import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -18,7 +30,61 @@ public class Main {
 	public static void main(String[] args) {
 
 		leerXML();
-		escribir();
+		escribirXML();
+	}
+
+	private static void escribirXML() {
+		DocumentBuilder builder = createBuilder();
+		DOMImplementation implementation = builder.getDOMImplementation();
+		Document document = implementation.createDocument(null, null, null);
+		document.setXmlVersion("1.0");
+		document.setXmlStandalone(true);
+		Element alumnos = document.createElement("Alumnos");
+		document.appendChild(alumnos);
+		
+		Element alumno = document.createElement("Alumno");
+		alumno.setAttribute("nombre", "Pepito Perez");
+		alumno.setAttribute("edad", "2");
+		
+		Element direccion = document.createElement("Carcel");
+		direccion.setTextContent("Soto del Real");
+		
+		Element telefono = document.createElement("Telefono");
+		telefono.setTextContent("666666666");
+		
+		//ACABAMOS DE CRREAR EL ALUMNO CON SUS HIJOS
+		alumno.appendChild(telefono);
+		alumno.appendChild(telefono);
+		
+		//CREAMOS EL ALUMNO DENTRO DE LA ETIQUETA ALUMNOS
+		alumnos.appendChild(alumno);
+		
+	//PASO 6 ES TRASNFORMAR LO QUE HAY EN LA RAM AL FICHERO
+		Source origen = new DOMSource(document);
+		
+		Result result = new StreamResult(new File("fichero/alumnos.xml"));
+		
+		//PASO 6.2 TRANSFORMAR
+		Transformer transf = null;
+		try {
+			transf = TransformerFactory.newInstance().newTransformer();
+		} catch (TransformerConfigurationException e) {
+			System.err.println("Error: error al crear el Transformer");
+			System.err.println(e.getMessage());
+			System.exit(-4);
+		} catch (TransformerFactoryConfigurationError e) {
+			System.err.println("Error: error al configurar el Transformer");
+			System.err.println(e.getMessage());
+			System.exit(-5);
+		}
+		try {
+			transf.transform(origen, result);
+		} catch (TransformerException e) {
+			System.err.println("Error a transformar origne result");
+			System.err.println(e.getMessage());
+			System.exit(-6);
+		}
+		
 	}
 
 	private static void leerXML() {
