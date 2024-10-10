@@ -11,11 +11,13 @@
     <fullyQualifiedTypeName name="java.util.stream.Stream"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
-    <fullyQualifiedTypeName name="java.sql.SQLSyntaxErrorException"/>
-    <fullyQualifiedTypeName name="java.nio.file.Path"/>
     <fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilderFactory"/>
     <fullyQualifiedTypeName name="javax.xml.transform.dom.DOMSource"/>
     <fullyQualifiedTypeName name="javax.xml.transform.stream.StreamResult"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="javax.xml.transform.TransformerFactory"/>
+    <fullyQualifiedTypeName name="javax.xml.parsers.SAXParserFactory"/>
+    <fullyQualifiedTypeName name="java.sql.SQLSyntaxErrorException"/>
+    <fullyQualifiedTypeName name="org.xml.sax.helpers.DefaultHandler"/>
+    <fullyQualifiedTypeName name="java.nio.file.Path"/>
 </qualifiedTypeNameHistroy>
