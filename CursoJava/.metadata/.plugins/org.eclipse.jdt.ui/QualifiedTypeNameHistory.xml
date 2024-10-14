@@ -20,4 +20,5 @@
     <fullyQualifiedTypeName name="java.sql.SQLSyntaxErrorException"/>
     <fullyQualifiedTypeName name="org.xml.sax.helpers.DefaultHandler"/>
     <fullyQualifiedTypeName name="java.nio.file.Path"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>

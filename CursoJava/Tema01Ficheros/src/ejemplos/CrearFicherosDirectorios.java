@@ -29,7 +29,7 @@ public class CrearFicherosDirectorios {
 			System.err.println(e.getMessage());
 			System.exit(-1);
 		}
-		Path path = Path.of(resource);
+		// 	Path path = Path.of(resource);
 	}
 
 }
