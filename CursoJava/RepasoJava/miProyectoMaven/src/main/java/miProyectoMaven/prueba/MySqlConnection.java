@@ -6,9 +6,7 @@ import java.sql.SQLException;
 
 public class MySqlConnection {
 	private static String driver="com.mysql.cj.jdbc.Driver";
-	static final String urlMysql= "jdbc:mysql://localhost:3306/oposiciones";
-	static final String usuario = "root";
-	static final String password= "";
+
 	
 	private MySqlConnection() {
 		
