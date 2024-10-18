@@ -3,16 +3,30 @@
   <groupId>dam2.castelar.com</groupId>
   <artifactId>miProyectoMaven</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  	<dependencies>
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-j</artifactId>
-		    <version>8.2.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <arifactId>h2</arifactId>
-		    <version>2.2.224</version>
-		</dependency>
-	</dependencies>
-</project> 
+  
+ 
+    <!-- Dependencia para MySQL -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId> <!-- Cambié a "mysql-connector-java" -->
+      <version>8.2.0</version> <!-- Versión del JAR que mencionaste -->
+    </dependency>
+
+    
+</project>
+
+
+<!-- 
+	 <dependencies>
+	Dependencia para H2
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.2.224</version>
+    </dependency>
+  </dependencies>
+  
+  
+  
+  
+   -->

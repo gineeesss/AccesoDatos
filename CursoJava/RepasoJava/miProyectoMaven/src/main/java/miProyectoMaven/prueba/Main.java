@@ -2,6 +2,7 @@ package miProyectoMaven.prueba;
 
 import java.nio.file.Path;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import miProyectoMaven.prueba.repositories.JDBCOperations;
@@ -10,28 +11,54 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Conexión a JDBC con MYSQL");
-		String urlMysql = "jdbc:mysql://localhost/m06";
-		//String urlH2="jdbc:h2:"+Path.of("m06").toAbsolutePath();
+
+		String urlMysql = "jdbc:mysql://localhost:3306/m06";
 		String username = "root";
-		String password = "secret";
-		System.out.println("Conectando a Servidor H2...");
-		Connection connection = H2Connection.newInstance(urlMysql,username,password);
-		String crearTablaPersonas="CREATE TABLE IF NOT EXIST PERSONAS("
+		String password = "";
+		//String urlH2="jdbc:h2:"+Path.of("m06").toAbsolutePath();
+		
+		
+		System.out.println("Conectando a Servidor ...");
+		//Connection connection = H2Connection.newInstance(urlMysql,username,password);
+		Connection connection = MySqlConnection.newInstance(urlMysql, username, password);
+		String crearTablaPersonas="CREATE TABLE IF NOT EXISTS PERSONAS("
 				+ "id INTEGER PRIMARY KEY AUTO_INCREMENT,"
 				+ "nombre VARCHAR(30) NOT NULL,"
 				+ "password VARCHAR(30) NOT NULL,"
 				+ "telefono INTEGER(9) NOT NULL);";
 		
-		String crearTablaDireccioness="CREATE TABLE IF NOT EXIST DIRECCIONES("
+		String crearTablaDirecciones="CREATE TABLE IF NOT EXISTS DIRECCIONES("
 				+ "id INTEGER PRIMARY KEY AUTO_INCREMENT,"
 				+ "persona_id INTEGER REFERENCES personas(id),"
-				+ "dirrecion VARCHAR(50) NOT NULL,"
-				+ "telefono INTEGER(9) NOT NULL);";
+				+ "direccion VARCHAR(50) NOT NULL,"
+				+ "FOREIGN KEY (personas_id) REFERENCES personas(id));";
+		
 		JDBCOperations.crearTabla(connection, crearTablaPersonas);
+		//JDBCOperations.crearTabla(connection, crearTablaDirecciones);
+		
+		
+		
+		String buscarPersona = "SELECT * FROM PERSONAS WHERE ID=1;";
+		ResultSet resultSet = JDBCOperations.buscarDatos(connection, buscarPersona);
+		if(resultSet!=null) {
+			try {
+				while(!resultSet.isLast()) {
+					resultSet.next();
+					System.out.println("ID: " + resultSet.getInt(1) + "Nombre: " + resultSet.getString(2));
+				}
+			} catch (SQLException e) {
+				System.err.println("Error: No se ha podido recorrer el resulutSet");
+				System.err.println(e.getMessage());
+				System.exit(-5);
+			}
+		}
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			System.out.println("Cerrando la conexión");
+			System.err.println("Error: No se ha podido cerrar la Conexión");
+			System.err.println(e.getMessage());
+			System.exit(-1);
 		}
+		
 	}
 }
