@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Main {
 	public static void main(String[] args) {
-		List<Alumno> alumnos = Arrays.asList(
+		/*List<Alumno> alumnos = Arrays.asList(
 				new Alumno("Mónica García", Arrays.asList(new Ejercicio1Asignatura("Matemáticas",6),new Ejercicio1Asignatura("Religión",7),new Ejercicio1Asignatura("Inglés",4),new Ejercicio1Asignatura("Informática",6))),
 				new Alumno("Mohamed IV", Arrays.asList(new Ejercicio1Asignatura("Matemáticas",6),new Ejercicio1Asignatura("Religión",7),new Ejercicio1Asignatura("Inglés",4),new Ejercicio1Asignatura("Informática",6))),
 				new Alumno("Gloria Fuertes", Arrays.asList(new Ejercicio1Asignatura("Matemáticas",6),new Ejercicio1Asignatura("Religión",7),new Ejercicio1Asignatura("Inglés",4),new Ejercicio1Asignatura("Informática",6))),
@@ -17,7 +17,7 @@ public class Main {
 		System.out.println("Alumno :"+alumno.getNombre());
 		alumno.getAsignaturas().forEach(
 				asignatura->System.out.println(asignatura.getNombre()+": "+asignatura.getNota()));
-	});
+	});*/
 	
 	}
 }
