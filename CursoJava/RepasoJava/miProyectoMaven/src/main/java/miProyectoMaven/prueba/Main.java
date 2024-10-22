@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import miProyectoMaven.prueba.repositories.JDBCOperations;
 
@@ -33,18 +34,29 @@ public class Main {
 				+ "direccion VARCHAR(50) NOT NULL,"
 				+ "FOREIGN KEY (personas_id) REFERENCES personas(id));";
 		
-		JDBCOperations.crearTabla(connection, crearTablaPersonas);
+		//JDBCOperations.crearTabla(connection, crearTablaPersonas);
 		//JDBCOperations.crearTabla(connection, crearTablaDirecciones);
 		
+		JDBCOperations.insertarDatos(connection);
+			
+		Scanner scr = new Scanner(System.in);
+		//String iduser= scr.nextLine();
+		//scr.nextLine();
+		//System.out.println("Contra");
+		//String passUser = scr.nextLine();
+	
+		//String buscarPersona = "SELECT * FROM PERSONAS WHERE ID ='" + iduser+"' AND password='"+ passUser+"';";
+		//String buscarPersona = "SELECT * FROM PERSONAS WHERE ID=1;";
+		/*String buscarPersona = "SELECT * FROM PERSONAS WHERE ID =? AND password=?;";
 		
-		
-		String buscarPersona = "SELECT * FROM PERSONAS WHERE ID=1;";
-		ResultSet resultSet = JDBCOperations.buscarDatos(connection, buscarPersona);
+	
+		ResultSet resultSet = JDBCOperations.buscarDatos(connection, buscarPersona, iduser,passUser);
+		//ResultSet resultSet = JDBCOperations.buscarDatos(connection, buscarPersona);
 		if(resultSet!=null) {
 			try {
 				while(!resultSet.isLast()) {
 					resultSet.next();
-					System.out.println("ID: " + resultSet.getInt(1) + "Nombre: " + resultSet.getString(2));
+					System.out.println("ID: " + resultSet.getInt(1) + "Nombre: " + resultSet.getString(2)+resultSet.getString(3)+resultSet.getString(4));
 				}
 			} catch (SQLException e) {
 				System.err.println("Error: No se ha podido recorrer el resulutSet");
@@ -52,6 +64,7 @@ public class Main {
 				System.exit(-5);
 			}
 		}
+		*/
 		try {
 			connection.close();
 		} catch (SQLException e) {
