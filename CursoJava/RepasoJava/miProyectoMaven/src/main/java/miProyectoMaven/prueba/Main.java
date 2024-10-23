@@ -37,7 +37,7 @@ public class Main {
 		//JDBCOperations.crearTabla(connection, crearTablaPersonas);
 		//JDBCOperations.crearTabla(connection, crearTablaDirecciones);
 		
-		JDBCOperations.insertarDatos(connection);
+		JDBCOperations.insertData(connection);
 			
 		Scanner scr = new Scanner(System.in);
 		//String iduser= scr.nextLine();

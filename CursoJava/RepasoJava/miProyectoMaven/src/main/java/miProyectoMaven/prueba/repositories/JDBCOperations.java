@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import miProyectoMaven.prueba.entities.Persona;
+
 public class JDBCOperations {
 	public static Statement crearSentencia(Connection connection) {
 		try {
@@ -49,9 +51,10 @@ public class JDBCOperations {
 		return null;
 	}
 	
-	public static void insertarDatos(Connection conn) {
+	public static void insertData(Connection conn) {
 		Statement statement = crearSentencia(conn);
 		String query = "INSERT INTO PERSONAS (id, nombre, password, telefono) VALUES (2,'porras','porras',666);";
+		//Persona persona = new Persona("porras","porras","666");
 		try {
 			statement.executeUpdate(query);
 		} catch (SQLException e) {
@@ -70,8 +73,6 @@ public class JDBCOperations {
 			System.exit(-3);
 		}
 	}
-	
-	
 	
 	public static ResultSet buscarDatos(Connection con, String query) {
 		Statement sentencia = crearSentencia(con);
