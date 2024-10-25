@@ -11,56 +11,55 @@ import java.util.List;
 import miProyectoMaven.prueba.entities.Direccion;
 import miProyectoMaven.prueba.entities.Persona;
 
-public class PersonnaRepository implements Repository<Persona> {
+public class DireccionesRepository implements Repository<Direccion> {
 
 	Connection connection;
-	public PersonnaRepository (Connection connection) {
+	
+
+	
+	
+	public DireccionesRepository(Connection connection) {
 		this.connection = connection;
 	}
-	
-	public List<Persona> findAllWithDirecciones(){
-		Statement estado = JDBCOperations.crearSentencia(connection);
-		
-		return null;
-	}
-	
+
 	@Override
-	public List<Persona> findAll() {
+	public List<Direccion> findAll() {
 		Statement estado = JDBCOperations.crearSentencia(connection);
-		String query = "SELECT * FROM PERSONAS;";
-		ArrayList<Persona> personas = new ArrayList<>();
+		String query = "SELECT * FROM DIRECCIONES";
+		ArrayList<Direccion> direcciones = new ArrayList<>();
+		
 		try {
 			estado.executeQuery(query);
 		} catch (SQLException e) {
-			System.err.println("Error: no se ha podido ejecutar la consulta"+query);
+			System.err.println("Error al ejecutar la query: " + query);
 			System.err.println(e.getMessage());
-			return personas;
 		}
+		
+		ResultSet resultSet;
 		try {
-			ResultSet resultSet = estado.getResultSet();
+			resultSet = estado.getResultSet();
 			while(!resultSet.isLast()) {
 				resultSet.next();
-				Persona persona = new Persona(
-						resultSet.getInt(1),    //ID
-						resultSet.getString(2), //NOMBRE
-						resultSet.getString(3), //PASSWORD
-						resultSet.getString(4)  //TELEFONO
+				Direccion direccion=new Direccion(
+						resultSet.getInt(1),
+						resultSet.getInt(2),
+						resultSet.getString(3)
 						);
-				personas.add(persona);
+				direcciones.add(direccion);
 			}
-			return personas;
 		} catch (SQLException e) {
-			System.err.println("Error: no se ha podido crear el resultSet");
+			System.err.println("Error al extraer el ResultSet");
 			System.err.println(e.getMessage());
 		}
+		
+		
+		
 		return null;
 	}
 
-	
-	
 	@Override
-	public Persona findOneById(int id) {
-		String query = "SELECT * FROM PERSONAS WHERE ID=?";
+	public Direccion findOneById(int id) {
+		String query = "SELECT * FROM DIRECCIONES WHERE ID=?";
 		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
 		try {
 			estado.setInt(1, id);
@@ -73,81 +72,69 @@ public class PersonnaRepository implements Repository<Persona> {
 		try {
 			ResultSet resultSet = estado.getResultSet();
 			resultSet.next();
-			return new Persona(
+			return new Direccion(
 					resultSet.getInt(1),    //ID
-					resultSet.getString(2), //NOMBRE
-					resultSet.getString(3), //PASSWORD
-					resultSet.getString(4)  //TELEFONO						
+					resultSet.getInt(2), 	//IDPERSONA
+					resultSet.getString(3)  //DIRECCION			
 			);
 		} catch (SQLException e) {
 			System.err.println("Erro: no se ha podido recuperar el resultSet");
 			System.err.println(e.getMessage());
 		}
 		return null;
-	}
+		}
 
-	
-	
-	
-	
 	@Override
-	public Persona save(Persona t) {
-		String query = "INSERT INTO PERSONAS(nombre,password,telefono) VALUES (?,?,?)";
+	public Direccion save(Direccion t) {
+		String query = "INSERT INTO DIRECCIONES(id,persona_id,direccion) VALUES (?,?,?)";
 		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
 		//PreparedStatement estado = null;
 		try {
 			//estado = connection.prepareStatement(quert, Statement.RETURN_GENERATED.KEYS);
-			estado.setString(1,t.getNombre());
-			estado.setString(1,t.getPassword());
-			estado.setString(1,t.getTelefono());
+			estado.setInt(1,t.getId());
+			estado.setInt(1,t.getPersonaId());
+			estado.setString(1,t.getDireccion());
 			estado.executeUpdate();
 			ResultSet key = estado.getGeneratedKeys();  // RECUPERAMOS EL ID AUTONUMERICO RECIEN CREADO EN LA BASE DE DATOS
 			key.next();									// NOS POSICIONAMOS
 			t.setId(key.getInt(1));						// LE SETEAMOS EL NUEVO ID A LA PERSONA
-			System.out.println("Datos de la persona guardados correctamente en la BD");
+			System.out.println("Datos de la direccion guardados correctamente en la BD");
 			return t;
 		} catch (SQLException e) {
 			System.err.println("Error: No se ha ejecutar la Insercción");
 			System.err.println(e.getMessage());
 		}
 		return null;
-	}
+		}
 
-	
-	
-	
-	
 	@Override
 	public void deleteById(int id) {
-		String query = "DELETE FROM PERSONAS WHERE ID=?";
+		String query = "DELETE FROM DIRECCION WHERE ID=?";
 		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
 		try {
 			estado.setInt(1, id);
 			if(estado.executeUpdate()>0) 
-			System.out.println("La persona ha sido eliminada");
+			System.out.println("La direccion ha sido eliminada");
+		} catch (SQLException e) {
+			System.err.println("Error al eliminar datos");
+			System.err.println(e.getMessage());
+		}
+	}
+
+	@Override
+	public void updateById(int id, Direccion direccion) {
+		String query = "UPDATE DIRECCIONES SET id=?, persona_id=?, direccion=? WHERE ID=?";
+		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
+		try {
+			estado.setInt(1, direccion.getPersonaId());
+			estado.setString(2, direccion.getDireccion());
+			estado.setInt(3, direccion.getId());
+			if(estado.executeUpdate()>0) 
+			System.out.println("La direccion ha sido eliminada");
 		} catch (SQLException e) {
 			System.err.println("Error al actualizar datos");
 			System.err.println(e.getMessage());
 		}
-		
-	}
-
-	@Override
-	public void updateById(int id, Persona persona) {
-		String query = "UPDATE PERSONAS SET nombre=?, password=?, telefono=? WHERE ID=?";
-		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
-		try {
-			estado.setString(1, persona.getNombre());
-			estado.setString(2, persona.getPassword());
-			estado.setString(3, persona.getTelefono());
-			estado.setInt(4, id);
-			if(estado.executeUpdate()>0) 
-			System.out.println("La persona ha sido eliminada");
-		} catch (SQLException e) {
-			System.err.println("Error al eliminar datos");
-			System.err.println(e.getMessage());
-		}		
-		
 	}
 
 	@Override
@@ -156,5 +143,5 @@ public class PersonnaRepository implements Repository<Persona> {
 		
 	}
 
-	
+
 }

@@ -2,6 +2,7 @@ package miProyectoMaven.prueba.repositories;
 
 import java.util.List;
 
+import miProyectoMaven.prueba.entities.Direccion;
 import miProyectoMaven.prueba.entities.Persona;
   
 // ES COMO SI FUESE EL DAO
@@ -16,5 +17,5 @@ public interface Repository<T> {
 	
 	void updateById(int id); // el ID¿?
 
-	void updateById(int id, Persona persona);
+	void updateById(int id, T t);
 }
