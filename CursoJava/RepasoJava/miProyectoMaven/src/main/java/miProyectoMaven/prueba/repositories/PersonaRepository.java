@@ -11,10 +11,10 @@ import java.util.List;
 import miProyectoMaven.prueba.entities.Direccion;
 import miProyectoMaven.prueba.entities.Persona;
 
-public class PersonnaRepository implements Repository<Persona> {
+public class PersonaRepository implements Repository<Persona> {
 
 	Connection connection;
-	public PersonnaRepository (Connection connection) {
+	public PersonaRepository (Connection connection) {
 		this.connection = connection;
 	}
 	
@@ -64,7 +64,7 @@ public class PersonnaRepository implements Repository<Persona> {
 		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
 		try {
 			estado.setInt(1, id);
-			estado.executeQuery(query);
+			estado.executeQuery();
 		} catch (SQLException e) {
 			System.err.println("Erro: no se ha podido ejecutar la sentencia: "+query);
 			System.err.println(e.getMessage());
@@ -93,13 +93,14 @@ public class PersonnaRepository implements Repository<Persona> {
 	@Override
 	public Persona save(Persona t) {
 		String query = "INSERT INTO PERSONAS(nombre,password,telefono) VALUES (?,?,?)";
-		PreparedStatement estado = JDBCOperations.crearSentencia(connection, query);
+		PreparedStatement estado = null;
 		//PreparedStatement estado = null;
 		try {
-			//estado = connection.prepareStatement(quert, Statement.RETURN_GENERATED.KEYS);
+			//estado = JDBCOperations.crearSentencia(connection, query);
+			estado = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			estado.setString(1,t.getNombre());
-			estado.setString(1,t.getPassword());
-			estado.setString(1,t.getTelefono());
+			estado.setString(2,t.getPassword());
+			estado.setString(3,t.getTelefono());
 			estado.executeUpdate();
 			ResultSet key = estado.getGeneratedKeys();  // RECUPERAMOS EL ID AUTONUMERICO RECIEN CREADO EN LA BASE DE DATOS
 			key.next();									// NOS POSICIONAMOS
@@ -142,7 +143,7 @@ public class PersonnaRepository implements Repository<Persona> {
 			estado.setString(3, persona.getTelefono());
 			estado.setInt(4, id);
 			if(estado.executeUpdate()>0) 
-			System.out.println("La persona ha sido eliminada");
+			System.out.println("La persona ha sido updateada");
 		} catch (SQLException e) {
 			System.err.println("Error al eliminar datos");
 			System.err.println(e.getMessage());

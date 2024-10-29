@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 import miProyectoMaven.prueba.repositories.JDBCOperations;
+import miProyectoMaven.prueba.repositories.PersonaRepository;
 import miProyectoMaven.prueba.entities.*;
 
 public class Principal {
@@ -23,18 +26,24 @@ public class Principal {
 		System.out.println("Conectando a Servidor ...");
 		//Connection connection = H2Connection.newInstance(urlMysql,username,password);
 		Connection connection = MySqlConnection.newInstance(urlMysql, username, password);
-		
-		JDBCOperations.insertData(connection);
-			
-		Persona persona = new Persona("Nacho","qwerty","666");
-
-
-		
-		
-		
-		
-		
-		
+		//JDBCOperations.insertData(connection);
+		System.out.println("Iniciando conexión con el servidor");
+		Persona persona = new Persona("Eyeywyeyey","qwerty","666");
+		System.out.println(persona+"Insertada");
+		PersonaRepository repository = new PersonaRepository(connection);
+		repository.save(persona);
+		System.out.println("---------------Persona almacenada en la base de datos");
+		System.out.println(persona+"Insertada");
+		System.out.println("---------------");
+		System.out.println(repository.findOneById(2));
+		System.out.println(repository.findAll());
+		repository.findAll().forEach(persona1 -> System.out.println(persona1));
+		persona.setPassword("tomatomate");
+		System.out.println("--------------");
+		System.out.println(persona+"Sa cambiao la contraseña");
+		repository.updateById(persona.getId(),persona);
+		System.out.println("--------------");
+		repository.deleteById(12);
 		
 		
 		try {

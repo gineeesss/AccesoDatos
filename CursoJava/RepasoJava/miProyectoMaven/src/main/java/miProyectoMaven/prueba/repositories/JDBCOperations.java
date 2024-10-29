@@ -53,7 +53,7 @@ public class JDBCOperations {
 	
 	public static void insertData(Connection conn) {
 		Statement statement = crearSentencia(conn);
-		String query = "INSERT INTO PERSONAS (id, nombre, password, telefono) VALUES (2,'porras','porras',666);";
+		String query = "INSERT INTO PERSONAS (id, nombre, password, telefono) VALUES (?,?,?,?);";
 		//Persona persona = new Persona("porras","porras","666");
 		try {
 			statement.executeUpdate(query);

@@ -53,6 +53,12 @@ public class Persona {
 		}
 		this.direcciones = direcciones;
 	}
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", password=" + password + ", telefono=" + telefono
+				+ ", direcciones=" + direcciones + "]";
+	}
+	
 	
 	
 }
