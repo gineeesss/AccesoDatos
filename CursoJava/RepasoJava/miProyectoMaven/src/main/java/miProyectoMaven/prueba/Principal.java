@@ -43,8 +43,10 @@ public class Principal {
 		System.out.println(persona+"Sa cambiao la contraseña");
 		repository.updateById(persona.getId(),persona);
 		System.out.println("--------------");
-		repository.deleteById(12);
-		
+		//repository.deleteById(12);
+		System.out.println("Clase 29-10--------------");
+		System.out.println(repository.findAllWithDirecciones());
+		repository.findAllWithDirecciones().forEach(p -> System.out.println(p));
 		
 		try {
 			connection.close();

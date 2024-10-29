@@ -53,6 +53,12 @@ public class Persona {
 		}
 		this.direcciones = direcciones;
 	}
+	public void addDireccion(Direccion direccion) {
+		if(direcciones==null) {
+			this.direcciones=new ArrayList<>();
+		}
+		direcciones.add(direccion);
+	}
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", password=" + password + ", telefono=" + telefono

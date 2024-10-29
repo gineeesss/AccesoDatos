@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Driver;
+
 import miProyectoMaven.prueba.entities.Direccion;
 import miProyectoMaven.prueba.entities.Persona;
 
@@ -20,8 +22,46 @@ public class PersonaRepository implements Repository<Persona> {
 	
 	public List<Persona> findAllWithDirecciones(){
 		Statement estado = JDBCOperations.crearSentencia(connection);
+		String query = "SELECT * FROM personas p LEFT JOIN direcciones d ON p.id=d.persona_id order by p.id";
+		ArrayList<Persona> personas = new ArrayList<>();
 		
-		return null;
+		try {
+			estado.executeQuery(query);
+		} catch (SQLException e) {
+			System.err.println("Error al ejecutar la consulta: "+query);
+			System.err.println(e.getMessage());
+			return personas;
+		}
+		try {
+			ResultSet rS = estado.getResultSet();
+			while(!rS.isLast()) {
+				rS.next();
+				Persona persona = new Persona(
+						rS.getInt(1),
+						rS.getString(2),
+						rS.getString(3),
+						rS.getString(4)
+						);
+				Direccion direccion = new Direccion(
+						rS.getInt(5),
+						rS.getInt(6),
+						rS.getString(7)
+						);
+				if(personas.contains(persona)) {
+					int posicion = personas.indexOf(persona);
+					Persona p = personas.get(posicion);
+					p.addDireccion(direccion);
+					personas.set(posicion, p);
+				}else {
+					persona.addDireccion(direccion);	
+					personas.add(persona);
+				}				
+			}			
+		} catch (SQLException e) {
+			System.err.println("No se han podido recuperar los datos");
+			System.err.println(e.getMessage());
+		}
+		return personas;
 	}
 	
 	@Override
@@ -141,7 +181,7 @@ public class PersonaRepository implements Repository<Persona> {
 			estado.setString(1, persona.getNombre());
 			estado.setString(2, persona.getPassword());
 			estado.setString(3, persona.getTelefono());
-			estado.setInt(4, id);
+			estado.setInt(4, persona.getId());
 			if(estado.executeUpdate()>0) 
 			System.out.println("La persona ha sido updateada");
 		} catch (SQLException e) {
