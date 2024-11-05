@@ -7,6 +7,8 @@ public class Producto {
 	private String nombre;
 	private Integer precio;
 	private Date fechaRegistro;
+	private Categoria categoria;
+	
 	public Producto(Long id, String nombre, Integer precio, Date fechaRegistro) {
 		this.id = id;
 		this.nombre = nombre;
@@ -26,10 +28,10 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", fechaRegistro=" + fechaRegistro
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", fechaRegistro=" + fechaRegistro + ", categoria= "+ categoria
 				+ "]";
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +57,14 @@ public class Producto {
 
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	
 	

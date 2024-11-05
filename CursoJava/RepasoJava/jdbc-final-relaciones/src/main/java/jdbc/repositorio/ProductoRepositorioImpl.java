@@ -84,14 +84,7 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 
 	@Override
 	public boolean eliminar(Long id) {
-
-		try(PreparedStatement stmt = getConnection().prepareStatement("DELETE FROM productos WHEERE id=?")){
-			stmt.setLong(1, id);
-	
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
 
