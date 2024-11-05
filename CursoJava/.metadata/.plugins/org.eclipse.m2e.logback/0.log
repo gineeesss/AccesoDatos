@@ -124,3 +124,9 @@
 2024-10-19 11:37:35,415 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\gigin\Desktop\DAM2\AccesoDatos\CursoJava\RepasoJava\miProyectoMaven\src\test\resources
 2024-10-20 12:20:05,423 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2024-10-20 12:20:06,009 [Worker-2: Decoration Calculation] WARN  org.eclipse.jgit.util.FS_Win32 - null
+2024-10-25 18:01:05,029 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-10-25 18:01:05,488 [Worker-8: Decoration Calculation] WARN  org.eclipse.jgit.util.FS_Win32 - null
+2024-10-25 18:08:15,540 [Worker-41: Building] WARN  o.a.m.s.f.DefaultMavenResourcesFiltering - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2024-10-25 18:08:15,543 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\gigin\Desktop\DAM2\AccesoDatos\CursoJava\RepasoJava\miProyectoMaven\src\main\resources
+2024-10-25 18:08:15,549 [Worker-41: Building] WARN  o.a.m.s.f.DefaultMavenResourcesFiltering - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2024-10-25 18:08:15,550 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\gigin\Desktop\DAM2\AccesoDatos\CursoJava\RepasoJava\miProyectoMaven\src\test\resources

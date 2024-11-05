@@ -1,0 +1,4 @@
+puerto: 80801
+nomapp: ventas
+fichlog: ventas\ventas.log
+numses: 200
