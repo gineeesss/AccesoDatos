@@ -21,12 +21,7 @@ public class EjemploJdbcUpdate {
 
 	
 		
-		try (
-				Connection conn = ConexionBaseDatos.getInstance();
-				//Statement stmt = conn.createStatement();
-				//ResultSet resultado=stmt.executeQuery("SELECT * FROM productos")
-				)
-		{
+		
 			System.out.println("Apertura conexion");
 			Repositorio<Producto> repositorio = new ProductoRepositorioImpl();
 			//repositorio.listar().forEach(p -> System.out.println(p));
@@ -53,18 +48,7 @@ public class EjemploJdbcUpdate {
 			repositorio.listar().forEach(System.out::println);
 
 			System.out.println("-------------------------FIN LISTADO---------------------");
-			
-			
-			
-	
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally {
-			
-		}
 	}
 
 }

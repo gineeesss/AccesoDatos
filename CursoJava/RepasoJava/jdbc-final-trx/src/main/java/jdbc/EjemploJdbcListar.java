@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 
-import jdbc.modelo.Categoria;
 import jdbc.modelo.Producto;
 import jdbc.repositorio.ProductoRepositorioImpl;
 import jdbc.repositorio.Repositorio;
@@ -15,14 +13,14 @@ import jdbc.util.ConexionBaseDatos;
 import jdbc.repositorio.*;
 import jdbc.repositorio.ProductoRepositorioImpl;
 
-public class EjemploJdbcUpdate {
+public class EjemploJdbcListar {
 
 	public static void main(String[] args) {
 
 	
 		
 		try (
-				Connection conn = ConexionBaseDatos.getInstance();
+				Connection conn = ConexionBaseDatos.getConnection();
 				//Statement stmt = conn.createStatement();
 				//ResultSet resultado=stmt.executeQuery("SELECT * FROM productos")
 				)
@@ -37,26 +35,7 @@ public class EjemploJdbcUpdate {
 			
 			System.out.println("-------------------------FIN LISTADO---------------------");
 			
-			Producto producto = new Producto();
-			producto.setId(4L);
-			producto.setNombre("Nyao");
-			producto.setPrecio(22);
-			producto.setFechaRegistro(new Date());
-			System.out.println(producto.toString());;
-			Categoria categoria = new Categoria();
-			categoria.setId(3L);			
-			producto.setCategoria(categoria);
-			
-			repositorio.guardar(producto);
-			
-			System.out.println("--------------------------LISTADO DE DATOS-------------------");
-			repositorio.listar().forEach(System.out::println);
-
-			System.out.println("-------------------------FIN LISTADO---------------------");
-			
-			
-			
-	
+			System.out.println("HOLAAA");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

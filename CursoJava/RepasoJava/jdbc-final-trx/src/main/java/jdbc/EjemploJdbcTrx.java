@@ -15,18 +15,17 @@ import jdbc.util.ConexionBaseDatos;
 import jdbc.repositorio.*;
 import jdbc.repositorio.ProductoRepositorioImpl;
 
-public class EjemploJdbcUpdate {
+public class EjemploJdbcTrx {
 
 	public static void main(String[] args) {
 
+		
 	
 		
-		try (
-				Connection conn = ConexionBaseDatos.getInstance();
-				//Statement stmt = conn.createStatement();
-				//ResultSet resultado=stmt.executeQuery("SELECT * FROM productos")
-				)
-		{
+		
+
+	
+	
 			System.out.println("Apertura conexion");
 			Repositorio<Producto> repositorio = new ProductoRepositorioImpl();
 			//repositorio.listar().forEach(p -> System.out.println(p));
@@ -37,34 +36,38 @@ public class EjemploJdbcUpdate {
 			
 			System.out.println("-------------------------FIN LISTADO---------------------");
 			
+			//System.out.println(repositorio.porId(2L));
+			
+			System.out.println("-------------------------EDITAR UN PRODUCTO---------------------");
+			
+			//PEDIMOS EL ID
 			Producto producto = new Producto();
-			producto.setId(4L);
-			producto.setNombre("Nyao");
-			producto.setPrecio(22);
-			producto.setFechaRegistro(new Date());
+			//producto.setId(2L);
+			producto.setNombre("Mikado");
+			producto.setPrecio(3);
 			System.out.println(producto.toString());;
+			producto.setFechaRegistro(new Date());
+			
 			Categoria categoria = new Categoria();
-			categoria.setId(3L);			
+			categoria.setId(2L);			
 			producto.setCategoria(categoria);
 			
 			repositorio.guardar(producto);
-			
-			System.out.println("--------------------------LISTADO DE DATOS-------------------");
-			repositorio.listar().forEach(System.out::println);
+			System.out.println(producto.toString());;
 
+			//System.out.println(repositorio.porId(2L));
+			
 			System.out.println("-------------------------FIN LISTADO---------------------");
-			
-			
-			
+			/*while (resultado.next()) {
+				System.out.print(resultado.getInt("id"));
+				System.out.print("|");
+				System.out.print(resultado.getString("nombre"));
+				System.out.print("|");
+				System.out.print(resultado.getInt("precio"));
+				System.out.print("|");
+				System.out.print(resultado.getDate("fecha_registro"));
+			}*/
 	
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally {
-			
-		}
 	}
 
 }
