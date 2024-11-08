@@ -17,13 +17,17 @@ import jdbc.repositorio.ProductoRepositorioImpl;
 
 public class EjemploJdbcTrx {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 
 		
 	
 		
+		try( 
+			Connection conn = ConexionBaseDatos.getConnection();
+				conn
+				){
+			
 		
-
 	
 	
 			System.out.println("Apertura conexion");
@@ -51,9 +55,12 @@ public class EjemploJdbcTrx {
 			Categoria categoria = new Categoria();
 			categoria.setId(2L);			
 			producto.setCategoria(categoria);
-			
+			producto.setSku("sada21s");
 			repositorio.guardar(producto);
-			System.out.println(producto.toString());;
+			System.out.println(producto.toString());
+			System.out.println();
+			repositorio.listar().forEach(System.out::println);
+			
 
 			//System.out.println(repositorio.porId(2L));
 			
@@ -67,7 +74,12 @@ public class EjemploJdbcTrx {
 				System.out.print("|");
 				System.out.print(resultado.getDate("fecha_registro"));
 			}*/
-	
+			conn.commit();
+		}catch (SQLException e) {
+			conn.rollback();
+			System.err.println(e.getMessage());
+		}
+		
 	}
 
 }

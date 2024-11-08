@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import jdbc.modelo.Categoria;
 import jdbc.modelo.Producto;
 import jdbc.util.ConexionBaseDatos;
 
@@ -20,7 +21,7 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 	}
 	
 	@Override
-	public List<Producto> listar() {
+	public List<Producto> listar() throws SQLException {
 		List<Producto> productos = new ArrayList<>();
 		try(	
 				Connection conn = getConnection();
@@ -29,24 +30,27 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 			while(rs.next()) {
 				productos.add(crearProducto(rs));
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		return productos;
 	}
 
 	private Producto crearProducto(ResultSet rs) throws SQLException {
 		Producto producto =  new Producto();
+		
 		producto.setId(rs.getLong("id"));
 		producto.setNombre(rs.getString("nombre"));
 		producto.setPrecio(rs.getInt("precio"));
 		producto.setFechaRegistro(rs.getDate("fecha_registro"));
+		Categoria categoria = new Categoria();
+		categoria.setId(rs.getLong("categoria_id"));
+		categoria.setNombre(rs.getString("categoria"));
+		producto.setCategoria(categoria);
 		return producto;
 	}
 
+
 	@Override
-	public Producto porId(Long id) {
+	public Producto porId(Long id) throws SQLException {
 		Producto producto = null;
 		try(
 				Connection conn = getConnection();
@@ -58,14 +62,12 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 					producto=crearProducto(rs);
 				}
 			}
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
 		return producto;
 	}
 
 	@Override
-	public void guardar(Producto producto) {
+	public void guardar(Producto producto) throws SQLException {
 		String sql;
 		//VAMOS A APROVECHAR PARA FUARDAR (INSERT( Y ADEMÁS ACTUALIZAR(UPDATE)
 		if(producto.getId()!=null && producto.getId()>0) {
@@ -86,13 +88,11 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 				stmt.setDate(3, new Date(producto.getFechaRegistro().getTime()));
 			}
 			stmt.executeUpdate();
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
+		} 
 	}
 
 	@Override
-	public boolean eliminar(Long id) {
+	public boolean eliminar(Long id) throws SQLException {
 
 		try(
 				Connection conn = getConnection();
@@ -100,10 +100,7 @@ public class ProductoRepositorioImpl implements Repositorio<Producto>{
 		{
 			stmt.setLong(1, id);
 	
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		return false;
 	}
 
