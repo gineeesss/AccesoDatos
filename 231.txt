@@ -1,0 +1,12 @@
+vuln Counting objects: 100% (25/25), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (22/22), 12.07 MiB | 1.46 MiB/s, done.
+Total 22 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote:
+remote: GitHub found 1 vulnerability on gineeesss/AccesoDatos's default branch (1 high). To find out more, visit:
+remote:      https://github.com/gineeesss/AccesoDatos/security/dependabot/1
+remote:
+To github.com:gineeesss/AccesoDatos.git
+   333e430..d193f92  main -> main
