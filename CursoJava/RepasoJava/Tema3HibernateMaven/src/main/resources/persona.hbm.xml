@@ -6,9 +6,9 @@
 	<id name="id" type="integer" column="id">
 		<generator class="identity"></generator>
 	</id>
-	<property name="nombre" column="nombre" type="varchar" length="50"/>
+	<property name="nombre" column="nombre" type="string" length="50"/>
 	<property name="edad" column="edad" type="integer"/>
-	<property name="fechaNacimiento" column="fecha_nacimiento" type="Date"/>
+	<property name="fechaNacimiento" column="fecha_nacimiento" type="date"/>
 </class>
 
 </hibernate-mapping>

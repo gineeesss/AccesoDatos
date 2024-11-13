@@ -3,7 +3,6 @@ package conexion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.internal.MetadataImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
@@ -18,6 +17,9 @@ public class Main {
 		final Session session = factory.openSession();
 		
 		System.out.println("Conectando correctamente a la base de datos....");
+		session.close();//factory.close();StandardServiceRegistryBuilder.destroy(registro);
+		
+		System.out.println("Sesion cerrada");
 	}
 
 }
