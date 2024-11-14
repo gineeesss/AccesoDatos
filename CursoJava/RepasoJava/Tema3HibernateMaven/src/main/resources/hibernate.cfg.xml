@@ -9,9 +9,8 @@
  	<property name="hibernate.hbm2ddl.auto">create</property>
  	<!-- <property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
  	<property name="hibernate.show_sql">true</property>
-	<!-- -->
- 	<mapping resource="persona.hbm.xml"/>
+	<!-- <mapping resource="persona.hbm.xml"/>-->
  	<!-- <mapping class="ejemplo01.Profesor"/>   -->
-
+	<mapping class="entities.Persona"/>
    </session-factory>
  </hibernate-configuration>
