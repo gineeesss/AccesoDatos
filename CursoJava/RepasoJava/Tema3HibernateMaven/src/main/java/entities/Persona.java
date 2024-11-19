@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +22,9 @@ public class Persona {
 	private int id;
 	private String nombre;
 	private int edad;
+	@ManyToOne
+	private Empresa empresa;
+
 	
 	@Column(name="fecha_nacimiento")
 	private Date fechaNacimiento;
@@ -31,6 +36,21 @@ public class Persona {
 		this.edad = edad;
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	public Persona(String nombre, int edad, Empresa empresa, Date fechaNacimiento) {
+		this.nombre = nombre;
+		this.edad = edad;
+		this.empresa = empresa;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	public Persona(int id, String nombre, int edad, Empresa empresa, Date fechaNacimiento) {
+		this.id = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.empresa = empresa;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	public Persona(String nombre, int edad, Date fechaNacimiento) {
 		this.nombre = nombre;
 		this.edad = edad;
@@ -70,9 +90,6 @@ public class Persona {
 	
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento
-				+ "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento+"empresaId="+ empresa+ "]";
 	}
-	
-	
 }
