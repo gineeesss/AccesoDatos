@@ -30,6 +30,10 @@ public class Empresa {
 		this.direccion = direccion;
 		this.personas = personas;
 	}
+	public Empresa(String nombre, String direccion) {
+		this.nombre = nombre;
+		this.direccion = direccion;
+	}
 
 	public int getId() {
 		return id;
@@ -61,6 +65,11 @@ public class Empresa {
 
 	public void setPersonas(Set<Persona> personas) {
 		this.personas = personas;
+	}
+
+	@Override
+	public String toString() {
+		return "Empresa [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", personas=" + personas + "]";
 	}
 	
 }

@@ -56,6 +56,12 @@ public class Persona {
 		this.edad = edad;
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	public Persona(String nombre, int edad, Date fechaNacimiento, Empresa empresa) {
+		this.nombre = nombre;
+		this.edad = edad;
+		this.fechaNacimiento = fechaNacimiento;
+		this.empresa = empresa;
+	}
 
 	public int getId() {
 		return id;
