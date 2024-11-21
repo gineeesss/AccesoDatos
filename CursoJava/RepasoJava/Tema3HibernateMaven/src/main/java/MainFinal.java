@@ -90,8 +90,6 @@ public class MainFinal {
 	}
 
 	private static int getNumero() {
-		int num = scr.nextInt();
-		
-		return 2;
+		return scr.nextInt();
 	}
 }
