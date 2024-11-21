@@ -3,6 +3,7 @@ package entities;
 import java.util.Calendar;
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Persona {
 	private int id;
 	private String nombre;
 	private int edad;
-	@ManyToOne
+	@ManyToOne(/*cascade=CascadeType.ALL*/)
 	private Empresa empresa;
 
 	
@@ -60,6 +61,14 @@ public class Persona {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.fechaNacimiento = fechaNacimiento;
+		this.empresa = empresa;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
 

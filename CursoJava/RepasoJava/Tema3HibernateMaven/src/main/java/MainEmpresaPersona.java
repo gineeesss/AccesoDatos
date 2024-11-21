@@ -32,6 +32,14 @@ public class MainEmpresaPersona {
 		
 		System.out.println("Persona después de guardar: "+ persona);
 		System.out.println(empresa);
+		System.out.println(persona.getEmpresa());
+		
+		String[] nombres = {"Paco", "Falete", "Anianin","Ginés","Rosario","Lucía","Antonio","Paula","Carmen","Manuela"};
+		for (int i=0;i<10;i++) {
+			Persona diez = new Persona(nombres[i],i,persona.newDate(i+1,i+1,2020+i),empresa);
+			personaRepository.save(diez);
+		}
+		
 		
 		session.close();
 		
