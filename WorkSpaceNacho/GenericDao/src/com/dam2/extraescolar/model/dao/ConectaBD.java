@@ -21,13 +21,13 @@ public class ConectaBD {
 	final static String DB_NAME = "acadt";
 	final static String DB_USER = "root";		
 	final static String DB_PASSWORD = "";
+	final private static String urlAcceso = "jdbc:mysql://localhost:3306/acadt?serverTimezone=Europe/Madrid";
 
 	private ConectaBD() throws ExceptionDataBase {
 		error = false;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			//String urlAcceso = "jdbc:mysql://" + DB_URL + ":" + DB_PORT + "/" + DB_NAME;
-			String urlAcceso = "jdbc:mysql://localhost:3306/acadt?serverTimezone=Europe/Madrid";
 			connection = DriverManager.getConnection(urlAcceso, DB_USER, DB_PASSWORD);
 			connection.setAutoCommit(false);
 		} catch (ClassNotFoundException ex) {
