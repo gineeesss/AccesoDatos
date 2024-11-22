@@ -27,10 +27,10 @@ public class PersonaRepository implements Repository<Persona>{
 	@Override
 	public Persona findOneById(int id) {
 		session.beginTransaction();
-		Query query =session.createQuery("FROM Persona where id=: idPersona", Persona.class);
+		Query<Persona> query =session.createQuery("FROM Persona where id=: idPersona", Persona.class);
 		query.setParameter("idPersona", id);
 		try {
-			return (Persona) query.getSingleResult();
+			return query.getSingleResult();
 		}catch (Exception e) {
 			System.out.println("No existe");
 			return null;

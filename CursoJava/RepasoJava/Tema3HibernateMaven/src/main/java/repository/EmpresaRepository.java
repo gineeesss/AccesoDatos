@@ -27,10 +27,10 @@ public class EmpresaRepository implements Repository<Empresa>{
 	@Override
 	public Empresa findOneById(int id) {
 		session.beginTransaction();
-		Query query =session.createQuery("FROM Empresa where id=: idEmpresa", Empresa.class);
+		Query<Empresa> query =session.createQuery("FROM Empresa where id=: idEmpresa", Empresa.class);
 		query.setParameter("idEmpresa", id);
 		try {
-			return (Empresa) query.getSingleResult();
+			return query.getSingleResult();
 		}catch (Exception e) {
 			System.out.println("No existe");
 			return new Empresa();
