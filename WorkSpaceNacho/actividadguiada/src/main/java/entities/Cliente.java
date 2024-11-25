@@ -62,5 +62,10 @@ public class Cliente {
 	public void setZona(String zona) {
 		this.zona = zona;
 	}
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", dni=" + dni + ", nombre=" + nombre + ", tfn=" + tfn + ", dir="
+				+ dir + ", tipocliente=" + tipocliente + ", zona=" + zona + "]";
+	}
 	
 }
