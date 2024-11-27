@@ -3,6 +3,7 @@ package fileFileUtilsYa0506;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLSyntaxErrorException;
+import org.apache.commons.io.FileUtils;
 
 
 
@@ -26,13 +27,14 @@ public class Main {
 		}
 
 		File renombre = new File(directorio, "fichero_copia.txt");
-		fichero.renameTo(renombre);ñ
+		fichero.renameTo(renombre);
 		try{
-			FileUtils.copyFile(renombre, fichero)
+			FileUtils.copyFile(renombre, fichero);
 		}catch(IOException e) {
 			
 		}
-		try(FileUtils.moveFile(fichero, new File("fichero.txt"));){
+		try{
+			FileUtils.moveFile(fichero, new File("fichero.txt"));
 			
 		}catch(IOException e) {
 			e.getMessage();

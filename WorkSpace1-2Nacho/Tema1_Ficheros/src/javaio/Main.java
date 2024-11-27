@@ -42,12 +42,11 @@ public class Main {
 			e.printStackTrace();
 		}
 		//Vamos a usar una nueva clase FileUtils:::MOVER UN FICHERO A OTRA CARPETA
-		/*
-		 * try { FileUtils.moveFile(fichero, new File("fichero3.txt")); } catch
-		 * (IOException e) { // TODO Auto-generated catch block
-		 * System.err.println("no se ha podido mover el fichero,"+fichero.getName());
-		 * e.printStackTrace(); }
-		 */
+		
+		 try { FileUtils.moveFile(fichero, new File("fichero3.txt")); } catch
+		 (IOException e) { // TODO Auto-generated catch block
+		 System.err.println("no se ha podido mover el fichero,"+fichero.getName());
+		 e.printStackTrace(); }
 		if(fichero.delete()) {
 			System.out.println("El fichero ha sido borrado");
 			
