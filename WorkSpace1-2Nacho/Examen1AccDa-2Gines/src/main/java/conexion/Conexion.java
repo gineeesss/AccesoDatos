@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class Conexion {
 	private static String url = "jdbc:mysql://localhost:3306/bdcoches?serverTimezone=Europe/Madrid";
-	private static String username = "usrcoches";
-	private static String password = "12345";
+	private static String username = "root";
+	private static String password = "";
 	private static Connection conn;
 
 	public static Connection getInstance() {

@@ -23,15 +23,18 @@ public class MainCargar {
         Concesionario concesionario = new Concesionario();
         try (PreparedStatement ps = getConnection().prepareStatement(sql);
              BufferedReader br = new BufferedReader(filePath)) {
-        	linea = br.readLine();
-        	propiedades=linea.split(" ");
-        	ps.setInt(1, Integer.parseInt(propiedades[0]));
-        	ps.setString(2, propiedades[1]);
-        	ps.setString(3, propiedades[2]);
-        	ps.setString(4, propiedades[3]);
-        	ps.setString(5, propiedades[4]);
-            ResultSet rs = ps.executeQuery();
-
+        	
+        	while((linea = br.readLine())!=null) {
+        	
+	        	propiedades=linea.split("#");
+	        	ps.setInt(1, Integer.parseInt(propiedades[0].trim()));
+	        	ps.setString(2, propiedades[1].trim());
+	        	ps.setString(3, propiedades[2].trim());
+	        	ps.setString(4, propiedades[3].trim());
+	        	ps.setString(5, propiedades[4].trim());
+	            ps.executeUpdate();
+	        	
+        	}
 	               
        } catch (Exception e) {
            System.err.println("Error: al conectar con la base de datos: ");
