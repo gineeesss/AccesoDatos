@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -18,7 +19,7 @@ public class Empresa {
 	private String nombre;
 	private String direccion;
 	@OneToMany(mappedBy="empresa")
-	private Set<Persona> personas;
+	private Set<Persona> personas = new HashSet<Persona>();
 	
 	public Empresa() {
 		
@@ -69,7 +70,19 @@ public class Empresa {
 
 	@Override
 	public String toString() {
-		return "Empresa [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", personas=" + personas + "]";
+		//return "Empresa [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", personas=" + personas + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("\nEmpresa : id: ")
+		.append(id)
+		.append("\nnombre : ")
+		.append(nombre)
+		.append("\ndireccion : ")
+		.append(direccion)
+		.append("\npersonas : ");
+		if (!personas.isEmpty()) {
+			personas.forEach(p->builder.append("\t").append(p.getNombre()));
+		}
+		return builder.toString();
 	}
 	
 }

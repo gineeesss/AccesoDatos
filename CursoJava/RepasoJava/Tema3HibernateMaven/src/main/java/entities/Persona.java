@@ -93,6 +93,12 @@ public class Persona {
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+	public String getFechaNacimientoString(){
+		Calendar calendar = new Calendar.Builder().build();
+		calendar.setTime(fechaNacimiento);
+		return calendar.get(Calendar.DATE)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.YEAR)+1;
+	}
+	
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
@@ -103,8 +109,10 @@ public class Persona {
 		return calendar.getTime();
 	}
 	
+	
+	// SEGMENTAR TOSTRING PORQUE SINO SE CREA UN DESBORDAMIENTO DE BUFFER PORQUYE UNA LLAMA A LA OTRA ETC
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento+"empresaId="+ empresa+ "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", fechaNacimiento=" + fechaNacimiento+"empresa="+ empresa+ "]";
 	}
 }

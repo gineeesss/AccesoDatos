@@ -34,7 +34,7 @@ public class MainFinal {
 
 		int seleccion;
 		do{
-			System.out.println("Seleccione alguna opción: ");
+			System.out.println("\nSeleccione alguna opción: ");
 			System.out.println("1. Crear una empresa");
 			System.out.println("1. Crear una persona ");
 			System.out.println("3. Asignar Empresa -> Persona");
@@ -94,9 +94,13 @@ public class MainFinal {
 	private static void crearPersona() {
 		System.out.println("[Nombre] :");
 		String nombre=getPalabra();
+		System.out.println("Edad: ");
 		int edad=getNumero();
+		System.out.println("Día: ");
 		int dia = getNumero();
+		System.out.println("Mes: ");
 		int mes = getNumero();
+		System.out.println("Year: ");
 		int year = getNumero();
 		Persona persona= new Persona(nombre, edad, Persona.newDate(dia,mes,year));
 		personaRepository.save(persona);
@@ -112,7 +116,7 @@ public class MainFinal {
 		String direccion=getPalabra();
 		Empresa empresa = new Empresa (nombre, direccion);
 		empresaRepository.save(empresa);
-		System.out.println("Empresa creada: "+ empresa);
+		//System.out.println("Empresa creada: "+ empresa);
 	}
 
 	private static int getNumero() {
