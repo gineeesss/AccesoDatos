@@ -1,0 +1,26 @@
+ex
+PARTE 1
+
+BDD: done
+TEmpleado: done
+frmEmpleado:
+	code: done
+	diseño: done
+Mensajes: done
+ActPersistencia: done  (no tocar clases del paquete)
+
+
+
+comprimir bdd, proyecto, word escrito a mano
+
+
+PARTE 2
+
+inner class: done
+gestionar transacciones: done i guess
+retocar AccesoDAO, Modificar, Obtener: done
+cambiar Obtener -> buscarAll: done
+quitar estructura for en BorradoVirtual:done
+Pasar ObtenerCodigo(AccesoBD -> done
+
+works
