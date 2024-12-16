@@ -14,8 +14,8 @@ public class Conexion {
 		if (conn == null) {
 			try {
 				conn = DriverManager.getConnection(url, username, password);
-				System.out.println(conn.getCatalog());
-				System.out.println(conn.getMetaData().getURL());
+				//System.out.println(conn.getCatalog());
+				//System.out.println(conn.getMetaData().getURL());
 			} catch (SQLException e) {
 				System.err.println("Error: no se ha podido obtener la instancia de la conexión");
 				System.err.println(e.getMessage());

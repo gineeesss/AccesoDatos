@@ -10,8 +10,6 @@ import conexion.Conexion;
 import modelo.Coche;
 import repository.CocheRepository;
 
-
-
 public class Main {
 	public static Scanner scr = new Scanner(System.in);
 	private static CocheRepository cocheRepository = new CocheRepository();
