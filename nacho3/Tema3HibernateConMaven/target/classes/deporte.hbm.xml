@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="entities.Deporte" table="deportes">
+<id name="id" type="integer" column="id">
+<generator class="identity"></generator>
+</id>
+<property name="nombre" column="nombre" type="string" length="50"></property>
+<property name="aireLibre"></property>
+
+<set name="personas" table="personas_deportes" >
+<key>
+<column name="deporte_id"></column>
+</key>
+<many-to-many class="entities.Persona">
+<column name="persona_id"></column>
+</many-to-many>
+
+</set>
+
+
+
+
+</class>
+
+</hibernate-mapping>

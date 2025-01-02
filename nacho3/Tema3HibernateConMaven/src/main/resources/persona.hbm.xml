@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="entities.Persona" table="personas">
+<id name="id" type="integer" column="id">
+<generator class="identity"></generator>
+</id>
+<property name="nombre" column="nombre" type="string" length="50"></property>
+
+<property name="edad" column="edad" type="integer"></property>
+<property name="fechaNacimiento" column="fecha_nacimiento" type="date"></property>
+
+<many-to-one name="empresa" class="entities.Empresa">
+<column name="empresa_id"></column> 
+</many-to-one>
+
+<set name="deportes" table="personas_deportes">
+<key>
+<column name="persona_id"></column>
+</key>
+<many-to-many class="entities.Deporte">
+	<column name="deporte_id"></column>
+</many-to-many>
+</set>
+
+
+
+</class>
+
+</hibernate-mapping>
