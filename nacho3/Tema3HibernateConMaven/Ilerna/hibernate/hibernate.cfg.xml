@@ -7,8 +7,8 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="connection.url">jdbc:mysql://localhost/ilerna</property>
-		<property name="connection.username">usuario</property>
-		<property name="connection.password">password</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<mapping resource="estudiante.hbm.xml" />
 	</session-factory>
